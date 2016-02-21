@@ -1,3 +1,5 @@
+var numeral = require('numeral');
+
 function Calculator(){
   this.currentPrincipal = 0;
   this.monthlyContributions = 0;
@@ -30,6 +32,10 @@ Calculator.prototype = {
    var exponent =  this.compoundedPerYear * this.yearsToGrow;
    var result = this.currentPrincipal * Math.pow(base, exponent);
    this.futureValue = result.toFixed(2, 10);
+  },
+
+  niceFutureValue: function(){
+    this.futureValue = numeral(this.futureValue).format('$0,0.00');
   }
 
 }

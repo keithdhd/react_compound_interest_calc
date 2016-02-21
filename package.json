@@ -17,8 +17,9 @@
     "express": "^4.13.4",
     "webpack": "^1.12.13"
   },
-  "dependencies":{
+  "dependencies": {
     "babel": "^6.5.2",
+    "numeral": "^1.5.3",
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
   }

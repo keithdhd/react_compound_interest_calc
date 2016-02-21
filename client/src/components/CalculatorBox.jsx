@@ -17,24 +17,28 @@ var CalculatorBox = React.createClass({
   setPrincipal: function(e){
     this.state.setPrincipal(e.target.value);
     this.state.compoundInterestForPrincipal();
+    this.state.niceFutureValue();
     this.forceUpdate();
   },
 
   setMonthlyContributions: function(e){
     this.state.setMonthlyContributions(e.target.value);
     this.state.compoundInterestForPrincipal();
+    this.state.niceFutureValue();
     this.forceUpdate();
   },
 
   setYearsToGrow: function(e){
     this.state.setYearsToGrow(e.target.value);
     this.state.compoundInterestForPrincipal();
+    this.state.niceFutureValue();
     this.forceUpdate();
   },
 
   setInterestRate: function(e){
     this.state.setInterestRate(e.target.value);
     this.state.compoundInterestForPrincipal();
+    this.state.niceFutureValue();
     this.forceUpdate();
   },
 
@@ -55,7 +59,7 @@ var CalculatorBox = React.createClass({
 
         <button type="submit" onClick={this.calculate}>Calculate</button>
 
-        <div>Future Value: {this.state.futureValue}</div>
+        <div>Future Value: <b>{this.state.futureValue}</b></div>
       </form>
 
     );

@@ -6,7 +6,7 @@ var CalculatorBox = React.createClass({
   calculate: function(e){
     e.preventDefault();
     this.state.compoundInterestForPrincipal();
-    console.log(this.state);
+    this.state.niceFutureValue();
     this.forceUpdate();
   },
 
@@ -14,29 +14,8 @@ var CalculatorBox = React.createClass({
     return new Calculator();
   },
 
-  setPrincipal: function(e){
-    this.state.setPrincipal(e.target.value);
-    this.state.compoundInterestForPrincipal();
-    this.state.niceFutureValue();
-    this.forceUpdate();
-  },
-
-  setMonthlyContributions: function(e){
-    this.state.setMonthlyContributions(e.target.value);
-    this.state.compoundInterestForPrincipal();
-    this.state.niceFutureValue();
-    this.forceUpdate();
-  },
-
-  setYearsToGrow: function(e){
-    this.state.setYearsToGrow(e.target.value);
-    this.state.compoundInterestForPrincipal();
-    this.state.niceFutureValue();
-    this.forceUpdate();
-  },
-
-  setInterestRate: function(e){
-    this.state.setInterestRate(e.target.value);
+  handleChange: function(callback, e){
+    callback.call(this.state, e.target.value);
     this.state.compoundInterestForPrincipal();
     this.state.niceFutureValue();
     this.forceUpdate();
@@ -46,16 +25,24 @@ var CalculatorBox = React.createClass({
     return(
       <form>
         <label htmlFor="principal">Principal: </label>
-        <input type="text" id="currentPrincipal" onChange={this.setPrincipal}/>
+        <input type="text" 
+               id="currentPrincipal" 
+               onChange={this.handleChange.bind(this, this.state.setPrincipal)}/>
 
         <label htmlFor="monthlyAddition">Monthly Addition: </label>
-        <input type="text" id="monthlyAddition" onChange={this.setMonthlyContributions}/>
+        <input type="text"
+               id="monthlyAddition"  
+               onChange={this.handleChange.bind(this, this.state.setMonthlyContributions)}/>
 
         <label htmlFor="yearsToGrow">Years To Grow: </label>
-        <input type="text" id="yearsToGrow" onChange={this.setYearsToGrow}/>
+        <input type="text" 
+               id="yearsToGrow" 
+               onChange={this.handleChange.bind(this, this.state.setYearsToGrow)}/>
 
         <label htmlFor="interestRate">Interest Rate: </label>
-        <input type="text" id="interestRate" onChange={this.setInterestRate}/>
+        <input type="text" 
+               id="interestRate" 
+               onChange={this.handleChange.bind(this, this.state.setInterestRate)}/>
 
         <button type="submit" onClick={this.calculate}>Calculate</button>
 
